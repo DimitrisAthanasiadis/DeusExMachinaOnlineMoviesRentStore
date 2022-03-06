@@ -49,9 +49,9 @@ class Movies(db.Model):
     title = db.Column(db.String(128))
     description = db.Column(db.String(128))
     movie_type = db.Column(db.Integer, db.ForeignKey('movie_types.id'))
-    rating = db.Column(db.Integer)
+    rating = db.Column(db.Float)
 
-    __table_args__ = (db.CheckConstraint('rating >= 1 AND rating <= 10'),)
+    __table_args__ = (db.CheckConstraint('rating >= 1.0 AND rating <= 10.0'),)
 
     def to_json(self):
         return {
@@ -67,10 +67,10 @@ class UserMovie(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
-    rating = db.Column(db.Integer)
+    rating = db.Column(db.Float)
     comments = db.Column(db.String(1000))
 
-    __table_args__ = (db.CheckConstraint('rating >= 1 AND rating <= 10'),)
+    __table_args__ = (db.CheckConstraint('rating >= 1.0 AND rating <= 10.0'),)
 
     def to_json(self):
         return {
