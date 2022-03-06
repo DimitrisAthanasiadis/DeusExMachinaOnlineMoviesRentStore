@@ -80,3 +80,22 @@ class UserMovie(db.Model):
             'rating': self.rating,
             'comments': self.comments
         }
+
+
+class UserMovieRentals(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    movie_id = db.Column(db.Integer, db.ForeignKey('movies.id'))
+    rental_date = db.Column(db.DateTime, nullable=False)
+    days_to_rent = db.Column(db.Integer)
+    returned = db.Column(db.Boolean, default=False)
+    return_date = db.Column(db.DateTime, default=None)
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'user_id': self.user_id,
+            'movie_id': self.movie_id,
+            'days_to_rent': self.days_to_rent,
+            'returned': self.returned
+        }
