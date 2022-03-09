@@ -6,6 +6,17 @@ class MoviesTransactions:
         pass
 
     def rent_price(self, **kwargs):
+        """
+        calculates the cost of the rental
+        according to the given days.
+
+        kwargs:
+            days_to_rent (int): number of days to rent
+
+        Returns:
+            int: the rental cost
+        """
+
         days_to_rent = kwargs.get("days_to_rent")
 
         if days_to_rent <= 3:
@@ -18,6 +29,18 @@ class MoviesTransactions:
         return price
 
     def rent_transaction(self, **kwargs):
+        """
+        performs the rental transaction with
+        the database.
+
+        kwargs:
+            days_to_rent (int): number of days to rent
+            movie (int): movie id
+
+        Returns:
+            json: dict that contains the rental info
+        """
+
         from src.models import UserMovieRentals
         from datetime import datetime
 
@@ -37,7 +60,10 @@ class MoviesTransactions:
         except Exception as e:
             print(e)
             db.session.rollback()
-            return jsonify({"message": "Error saving transaction"}), 500
+            return jsonify({
+                "message": "Error saving transaction",
+                "error": str(e)
+            }), 500
 
         return jsonify({
             "message": "Rent transaction successful",

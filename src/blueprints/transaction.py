@@ -8,6 +8,22 @@ transaction_bp = Blueprint('transaction', __name__, url_prefix='/transaction')
 
 @transaction_bp.route('/rent_info', methods=['POST'])
 def rent_info():
+    """
+    searches for a specific movie and returns
+    the rent info according to the given days.
+
+    receives movie id and days for rental
+    and calculates the cost.
+
+    POST DATA:
+        movie_id (int): movie id
+        days_to_rent (int): number of days to rent
+
+    Returns:
+        json: dict that contains info about
+            the rental of the specific movie
+    """
+
     movie_id = request.get_json().get("movie_id")
     days_to_rent = request.get_json().get("days_to_rent")
 
@@ -30,6 +46,19 @@ def rent_info():
 
 @transaction_bp.route('/rent', methods=['POST'])
 def rent():
+    """
+    user rents the given movie for the given days.
+
+    POST DATA:
+        movie_id (int): movie id
+        days_to_rent (int): number of days to rent
+        user_id (int): the user that will rent the movie
+
+    Returns:
+        json: dict that contains the rental info for the
+            given movie.
+    """
+
     movie_id = request.get_json().get("movie_id")
     days_to_rent = request.get_json().get("days_to_rent")
     user_id = request.get_json().get("user_id")
