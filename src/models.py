@@ -97,5 +97,6 @@ class UserMovieRentals(db.Model):
             'user_id': self.user_id,
             'movie_id': self.movie_id,
             'days_to_rent': self.days_to_rent,
-            'returned': self.returned
+            'returned': self.returned,
+            'rental_date': self.rental_date.strftime("%Y-%m-%d %H:%M:%S"),
         }
