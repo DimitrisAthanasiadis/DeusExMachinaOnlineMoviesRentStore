@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from src.models import Movies, UserMovieRentals
 from src.utils.movie_utils import MoviesTransactions
+from src.utils.decorators import token_required
 
 
 transaction_bp = Blueprint('transaction', __name__, url_prefix='/transaction')
@@ -45,6 +46,7 @@ def rent_info():
 
 
 @transaction_bp.route('/rent', methods=['POST'])
+@token_required
 def rent():
     """
     user rents the given movie for the given days.
@@ -85,6 +87,7 @@ def rent():
 
 
 @transaction_bp.route('/get_rented_movies', methods=['POST'])
+@token_required
 def get_rented_movies():
     """
     fetches the rented movies for the given user.
@@ -110,6 +113,7 @@ def get_rented_movies():
 
 
 @transaction_bp.route("/get_not_returned_movies", methods=['POST'])
+@token_required
 def get_not_returned_movies():
     """
     fetches the not returned movies for the given user.
@@ -140,6 +144,7 @@ def get_not_returned_movies():
 
 
 @transaction_bp.route('/pay', methods=['POST'])
+@token_required
 def pay():
     """
     performs the payment for the given movie.
