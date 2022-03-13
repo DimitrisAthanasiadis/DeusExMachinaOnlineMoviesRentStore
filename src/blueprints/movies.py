@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
-from src.models import Movies
 
+from src.models import Movies
 
 movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 

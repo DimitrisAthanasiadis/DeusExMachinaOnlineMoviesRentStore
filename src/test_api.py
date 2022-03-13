@@ -1,9 +1,9 @@
-from email import header
-import unittest
 import json
-from environs import Env
-from src.app import app
+import unittest
 
+from environs import Env
+
+from src.app import app
 
 env = Env()
 env.read_env("config/.env")

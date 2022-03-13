@@ -1,4 +1,5 @@
 from flask import jsonify
+
 from src import db
 
 
@@ -42,8 +43,9 @@ class MoviesTransactions:
             json: dict that contains the rental info
         """
 
-        from src.models import UserMovieRentals
         from datetime import datetime
+
+        from src.models import UserMovieRentals
 
         days_to_rent = kwargs.get("days_to_rent")
         movie = kwargs.get("movie")
@@ -175,8 +177,9 @@ class MoviesTransactions:
             json: the final jsonified answer of the payment
         """
 
-        from src.models import UserMovieRentals
         from datetime import datetime
+
+        from src.models import UserMovieRentals
 
         transaction_id = kwargs.get("transaction_id")
         user_id = kwargs.get("user_id")

@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, request
-from src.models import Movies, UserMovieRentals
-from src.utils.movie_utils import MoviesTransactions
-from src.utils.decorators import token_required
 
+from src.models import Movies, UserMovieRentals
+from src.utils.decorators import token_required
+from src.utils.movie_utils import MoviesTransactions
 
 transaction_bp = Blueprint("transaction", __name__, url_prefix="/transaction")
 
