@@ -1,0 +1,634 @@
+{
+	"log": {
+		"version": "1.2",
+		"creator": {
+			"name": "Insomnia REST Client",
+			"version": "insomnia.desktop.app:v2022.1.1"
+		},
+		"entries": [
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 7.252,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/transaction/pay",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "X-Access-Token",
+							"value": "FROM_ENV_FILE"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"user_id\": 2,\n\t\"transaction_id\": 12,\n\t\"euros\": 7\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 400,
+					"statusText": "BAD REQUEST",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "106"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 16:07:35 GMT"
+						}
+					],
+					"content": {
+						"size": 106,
+						"mimeType": "application/json",
+						"text": "{\n  \"message\": \"You haven't rented this movie or you have already paid for it in the last transaction.\"\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 7.252,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Pay movie"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 11.918,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/transaction/get_not_returned_movies",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "X-Access-Token",
+							"value": "FROM_ENV_FILE"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"user_id\": 2\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "210"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 16:14:13 GMT"
+						}
+					],
+					"content": {
+						"size": 210,
+						"mimeType": "application/json",
+						"text": "[\n  {\n    \"days_to_rent\": 10, \n    \"extra_cost_penalty\": 0, \n    \"id\": 13, \n    \"movie_id\": 4, \n    \"rental_date\": \"2022-03-13 18:14:10\", \n    \"returned\": false, \n    \"total_cost\": 6.5, \n    \"user_id\": 2\n  }\n]\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 11.918,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get not returned movies"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 9.048,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/transaction/get_rented_movies",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "X-Access-Token",
+							"value": "FROM_ENV_FILE"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"user_id\": 2\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "912"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 14:05:06 GMT"
+						}
+					],
+					"content": {
+						"size": 912,
+						"mimeType": "application/json",
+						"text": "[\n  {\n    \"days_to_rent\": 10, \n    \"id\": 6, \n    \"movie_id\": 4, \n    \"rental_date\": \"2022-03-13 16:04:51\", \n    \"returned\": false, \n    \"user_id\": 2\n  }, \n  {\n    \"days_to_rent\": 10, \n    \"id\": 5, \n    \"movie_id\": 4, \n    \"rental_date\": \"2022-03-13 15:28:21\", \n    \"returned\": true, \n    \"user_id\": 2\n  }, \n  {\n    \"days_to_rent\": 10, \n    \"id\": 4, \n    \"movie_id\": 5, \n    \"rental_date\": \"2022-03-12 00:10:44\", \n    \"returned\": true, \n    \"user_id\": 2\n  }, \n  {\n    \"days_to_rent\": 4, \n    \"id\": 3, \n    \"movie_id\": 3, \n    \"rental_date\": \"2022-03-11 23:58:57\", \n    \"returned\": true, \n    \"user_id\": 2\n  }, \n  {\n    \"days_to_rent\": 4, \n    \"id\": 2, \n    \"movie_id\": 1, \n    \"rental_date\": \"2022-03-11 23:34:22\", \n    \"returned\": true, \n    \"user_id\": 2\n  }, \n  {\n    \"days_to_rent\": 4, \n    \"id\": 1, \n    \"movie_id\": 3, \n    \"rental_date\": \"2022-03-06 23:01:49\", \n    \"returned\": true, \n    \"user_id\": 2\n  }\n]\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 9.048,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get user rented movies"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 39.579,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/transaction/rent",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "X-Access-Token",
+							"value": "FROM_ENV_FILE"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"user_id\": 2,\n\t\"movie_id\": 2,\n\t\"days_to_rent\": 10\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 400,
+					"statusText": "BAD REQUEST",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "46"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 16:15:33 GMT"
+						}
+					],
+					"content": {
+						"size": 46,
+						"mimeType": "application/json",
+						"text": "{\n  \"message\": \"You can't rent this movie.\"\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 39.579,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Rent a movie"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 44.643,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/movies/rating",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"rating\": 9\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "250"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 13:23:05 GMT"
+						}
+					],
+					"content": {
+						"size": 250,
+						"mimeType": "application/json",
+						"text": "{\n  \"movies\": [\n    {\n      \"description\": \"A family is forced to live in an isolated room in order to avoid the presence of the killer.\", \n      \"id\": 3, \n      \"movie_type\": \"Horror\", \n      \"rating\": 9.0, \n      \"title\": \"The Shining\"\n    }\n  ]\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 44.643,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get movies by rating"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 1565.02,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/transaction/rent_info",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"movie_id\": 5,\n\t\"days_to_rent\": 10\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "208"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 13:21:44 GMT"
+						}
+					],
+					"content": {
+						"size": 208,
+						"mimeType": "application/json",
+						"text": "{\n  \"days_to_rent\": 10, \n  \"movie\": {\n    \"description\": \"This is adventure 1 movie\", \n    \"id\": 5, \n    \"movie_type\": \"Adventure\", \n    \"rating\": 6.0, \n    \"title\": \"Adventure 1\"\n  }, \n  \"rent_price\": 6.5\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 1565.02,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get movie rent info"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 80.785,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/movies/movie_info",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"movie_id\": 3\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "227"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 13:18:33 GMT"
+						}
+					],
+					"content": {
+						"size": 227,
+						"mimeType": "application/json",
+						"text": "{\n  \"movie\": {\n    \"description\": \"A family is forced to live in an isolated room in order to avoid the presence of the killer.\", \n    \"id\": 3, \n    \"movie_type\": \"Horror\", \n    \"rating\": 9.0, \n    \"title\": \"The Shining\"\n  }\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 80.785,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get specific movie info"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 51.929,
+				"request": {
+					"method": "POST",
+					"url": "http://localhost:5000/movies/category",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						}
+					],
+					"queryString": [],
+					"postData": {
+						"mimeType": "application/json",
+						"text": "{\n\t\"category\": \"Horror\"\n}",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "250"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 13:14:14 GMT"
+						}
+					],
+					"content": {
+						"size": 250,
+						"mimeType": "application/json",
+						"text": "{\n  \"movies\": [\n    {\n      \"description\": \"A family is forced to live in an isolated room in order to avoid the presence of the killer.\", \n      \"id\": 3, \n      \"movie_type\": \"Horror\", \n      \"rating\": 9.0, \n      \"title\": \"The Shining\"\n    }\n  ]\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 51.929,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get movies by category"
+			},
+			{
+				"startedDateTime": "2022-03-13T16:25:05.724Z",
+				"time": 21.644,
+				"request": {
+					"method": "GET",
+					"url": "http://localhost:5000/movies",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [],
+					"queryString": [],
+					"postData": {
+						"mimeType": "",
+						"text": "",
+						"params": []
+					},
+					"headersSize": -1,
+					"bodySize": -1,
+					"settingEncodeUrl": true
+				},
+				"response": {
+					"status": 200,
+					"statusText": "OK",
+					"httpVersion": "HTTP/1.1",
+					"cookies": [],
+					"headers": [
+						{
+							"name": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"name": "Content-Length",
+							"value": "896"
+						},
+						{
+							"name": "Server",
+							"value": "Werkzeug/2.0.3 Python/3.10.1"
+						},
+						{
+							"name": "Date",
+							"value": "Sun, 13 Mar 2022 13:54:11 GMT"
+						}
+					],
+					"content": {
+						"size": 896,
+						"mimeType": "application/json",
+						"text": "{\n  \"movies\": [\n    {\n      \"description\": \"This is action 1 movie\", \n      \"id\": 1, \n      \"movie_type\": \"Action\", \n      \"rating\": 8.0, \n      \"title\": \"Action 1\"\n    }, \n    {\n      \"description\": \"This is adventure 1 movie\", \n      \"id\": 2, \n      \"movie_type\": \"Adventure\", \n      \"rating\": 6.0, \n      \"title\": \"Adventure 1\"\n    }, \n    {\n      \"description\": \"A family is forced to live in an isolated room in order to avoid the presence of the killer.\", \n      \"id\": 3, \n      \"movie_type\": \"Horror\", \n      \"rating\": 9.0, \n      \"title\": \"The Shining\"\n    }, \n    {\n      \"description\": \"This is action 1 movie\", \n      \"id\": 4, \n      \"movie_type\": \"Action\", \n      \"rating\": 8.0, \n      \"title\": \"Action 1\"\n    }, \n    {\n      \"description\": \"This is adventure 1 movie\", \n      \"id\": 5, \n      \"movie_type\": \"Adventure\", \n      \"rating\": 6.0, \n      \"title\": \"Adventure 1\"\n    }\n  ]\n}\n"
+					},
+					"redirectURL": "",
+					"headersSize": -1,
+					"bodySize": -1
+				},
+				"cache": {},
+				"timings": {
+					"blocked": -1,
+					"dns": -1,
+					"connect": -1,
+					"send": 0,
+					"wait": 21.644,
+					"receive": 0,
+					"ssl": -1
+				},
+				"comment": "Get all movies"
+			}
+		]
+	}
+}
