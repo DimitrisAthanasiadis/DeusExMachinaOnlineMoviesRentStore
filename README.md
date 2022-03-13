@@ -22,3 +22,10 @@ Python 3.10.1 was used to build the project. Windows is my OS, so the commands p
 Documentation is provided inside every method and view of the project to explain the functionality.
 
 I used **Insomnia** client to call the endpoints.
+
+I have provided an export json file from the Insomnia client in order to have a reference of the endpoints. The responses that are inside the export json file are indicative
+and depend on the request provided by the user.
+
+## TESTING
+
+The test script is located in `./src/test_api.py`. I used VS Code to test the API by using the Testing extension.
