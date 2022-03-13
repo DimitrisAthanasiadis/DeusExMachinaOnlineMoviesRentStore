@@ -8,5 +8,5 @@ from src.models import *
 app = create_app()
 register_blueprints(app, movies_bp, transaction_bp)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app.run(debug=True)

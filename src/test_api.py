@@ -114,7 +114,7 @@ class TestOnlineMovieStoreApi(unittest.TestCase):
         self.assertTrue(
             response_data.get("message") == "Rent transaction successful"
             or response_data.get("message") == "You can't rent this movie."
-        ) # i am doing this because the user might want to rent a movie that is already rented but not returned
+        )  # i am doing this because the user might want to rent a movie that is already rented but not returned
 
     def test_get_not_returned_movies(self):
         print("RUNNING TESTS FOR FETCHING NOT RETURNED MOVIES")

@@ -4,10 +4,10 @@ from src.utils.movie_utils import MoviesTransactions
 from src.utils.decorators import token_required
 
 
-transaction_bp = Blueprint('transaction', __name__, url_prefix='/transaction')
+transaction_bp = Blueprint("transaction", __name__, url_prefix="/transaction")
 
 
-@transaction_bp.route('/rent_info', methods=['POST'])
+@transaction_bp.route("/rent_info", methods=["POST"])
 def rent_info():
     """
     searches for a specific movie and returns
@@ -38,14 +38,16 @@ def rent_info():
     movie_transactions = MoviesTransactions()
     rent_price = movie_transactions.rent_price(days_to_rent=days_to_rent)
 
-    return jsonify({
-        "movie": movie.to_json(),
-        "days_to_rent": days_to_rent,
-        "rent_price": rent_price
-    })
+    return jsonify(
+        {
+            "movie": movie.to_json(),
+            "days_to_rent": days_to_rent,
+            "rent_price": rent_price,
+        }
+    )
 
 
-@transaction_bp.route('/rent', methods=['POST'])
+@transaction_bp.route("/rent", methods=["POST"])
 @token_required
 def rent():
     """
@@ -74,7 +76,10 @@ def rent():
 
     movie_transactions = MoviesTransactions()
 
-    if movie_transactions.user_can_rent_movie(user_id=user_id, movie_id=movie_id) is False:
+    if (
+        movie_transactions.user_can_rent_movie(user_id=user_id, movie_id=movie_id)
+        is False
+    ):
         return jsonify({"message": "You can't rent this movie."}), 400
 
     transaction = movie_transactions.rent_transaction(
@@ -86,7 +91,7 @@ def rent():
     return transaction
 
 
-@transaction_bp.route('/get_rented_movies', methods=['POST'])
+@transaction_bp.route("/get_rented_movies", methods=["POST"])
 @token_required
 def get_rented_movies():
     """
@@ -104,7 +109,12 @@ def get_rented_movies():
     if not user_id:
         return jsonify({"message": "Missing parameters"}), 400
 
-    rented_movies = [movie.to_json() for movie in UserMovieRentals.query.filter_by(user_id=user_id).order_by(UserMovieRentals.rental_date.desc()).all()]
+    rented_movies = [
+        movie.to_json()
+        for movie in UserMovieRentals.query.filter_by(user_id=user_id)
+        .order_by(UserMovieRentals.rental_date.desc())
+        .all()
+    ]
 
     if not rented_movies:
         return jsonify({"message": "No rented movies"}), 404
@@ -112,7 +122,7 @@ def get_rented_movies():
     return jsonify(rented_movies), 200
 
 
-@transaction_bp.route("/get_not_returned_movies", methods=['POST'])
+@transaction_bp.route("/get_not_returned_movies", methods=["POST"])
 @token_required
 def get_not_returned_movies():
     """
@@ -130,11 +140,18 @@ def get_not_returned_movies():
     if not user_id:
         return jsonify({"message": "Missing parameters"}), 400
 
-    not_returned_movies = [movie.to_json() for movie in UserMovieRentals.query.filter_by(user_id=user_id, returned=False).all()]
+    not_returned_movies = [
+        movie.to_json()
+        for movie in UserMovieRentals.query.filter_by(
+            user_id=user_id, returned=False
+        ).all()
+    ]
     movies_transactions = MoviesTransactions()
 
     for movie in not_returned_movies:
-        movie["extra_cost_penalty"] = movies_transactions.get_extra_cost_penalty(movie=movie)
+        movie["extra_cost_penalty"] = movies_transactions.get_extra_cost_penalty(
+            movie=movie
+        )
         movie["total_cost"] = movies_transactions.get_total_cost(movie=movie)
 
     if not not_returned_movies:
@@ -143,7 +160,7 @@ def get_not_returned_movies():
     return jsonify(not_returned_movies), 200
 
 
-@transaction_bp.route('/pay', methods=['POST'])
+@transaction_bp.route("/pay", methods=["POST"])
 @token_required
 def pay():
     """
@@ -166,6 +183,8 @@ def pay():
         return jsonify({"message": "Missing parameters"}), 400
 
     movies_transactions = MoviesTransactions()
-    paid_movie = movies_transactions.pay(user_id=user_id, transaction_id=transaction_id, euros=euros)
+    paid_movie = movies_transactions.pay(
+        user_id=user_id, transaction_id=transaction_id, euros=euros
+    )
 
     return paid_movie

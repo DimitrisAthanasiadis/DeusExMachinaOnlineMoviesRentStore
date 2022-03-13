@@ -1,6 +1,7 @@
 from flask import jsonify
 from src import db
 
+
 class MoviesTransactions:
     def __init__(self):
         pass
@@ -23,7 +24,7 @@ class MoviesTransactions:
             price = days_to_rent
         else:
             price = 3
-            for i in range(4, days_to_rent+1):
+            for i in range(4, days_to_rent + 1):
                 price += 0.5
 
         return price
@@ -60,18 +61,23 @@ class MoviesTransactions:
         except Exception as e:
             print(e)
             db.session.rollback()
-            return jsonify({
-                "message": "Error saving transaction",
-                "error": str(e)
-            }), 500
+            return (
+                jsonify({"message": "Error saving transaction", "error": str(e)}),
+                500,
+            )
 
-        return jsonify({
-            "message": "Rent transaction successful",
-            "movie": movie.to_json(),
-            "days_to_rent": days_to_rent,
-            "rent_price": self.rent_price(days_to_rent=days_to_rent),
-            "rental_date": rental_date.strftime("%Y-%m-%d %H:%M:%S")
-        }), 200
+        return (
+            jsonify(
+                {
+                    "message": "Rent transaction successful",
+                    "movie": movie.to_json(),
+                    "days_to_rent": days_to_rent,
+                    "rent_price": self.rent_price(days_to_rent=days_to_rent),
+                    "rental_date": rental_date.strftime("%Y-%m-%d %H:%M:%S"),
+                }
+            ),
+            200,
+        )
 
     def get_extra_cost_penalty(self, **kwargs):
         """
@@ -94,7 +100,9 @@ class MoviesTransactions:
         if movie.get("returned") is True:
             return extra_cost_penalty
 
-        rental_date = datetime.strptime(movie.get("rental_date"), "%Y-%m-%d %H:%M:%S").date()
+        rental_date = datetime.strptime(
+            movie.get("rental_date"), "%Y-%m-%d %H:%M:%S"
+        ).date()
         now = datetime.now().date()
         supposed_return_date = rental_date + timedelta(days=movie.get("days_to_rent"))
 
@@ -142,7 +150,11 @@ class MoviesTransactions:
         movie_id = kwargs.get("movie_id")
         user_id = kwargs.get("user_id")
 
-        user_rented_movie = UserMovieRentals.query.filter_by(user_id=user_id, movie_id=movie_id).order_by(UserMovieRentals.rental_date.desc()).first()
+        user_rented_movie = (
+            UserMovieRentals.query.filter_by(user_id=user_id, movie_id=movie_id)
+            .order_by(UserMovieRentals.rental_date.desc())
+            .first()
+        )
         if not user_rented_movie or user_rented_movie.returned is True:
             return True
         else:
@@ -170,16 +182,30 @@ class MoviesTransactions:
         user_id = kwargs.get("user_id")
         euros = kwargs.get("euros")
 
-        user_rented_movie = UserMovieRentals.query.filter_by(user_id=user_id, id=transaction_id).first()
+        user_rented_movie = UserMovieRentals.query.filter_by(
+            user_id=user_id, id=transaction_id
+        ).first()
 
         if not user_rented_movie or user_rented_movie.returned is True:
-            return jsonify({"message": "You haven't rented this movie or you have already paid for it in the last transaction."}), 400
+            return (
+                jsonify(
+                    {
+                        "message": "You haven't rented this movie or you have already paid for it in the last transaction."
+                    }
+                ),
+                400,
+            )
 
         total_cost = self.get_total_cost(movie=user_rented_movie.to_json())
         if euros < total_cost:
-            return jsonify({
-                "message": f"You don't have enough money to pay for this movie. Total cost is {total_cost} euros",
-            }), 400
+            return (
+                jsonify(
+                    {
+                        "message": f"You don't have enough money to pay for this movie. Total cost is {total_cost} euros",
+                    }
+                ),
+                400,
+            )
         change = euros - total_cost
 
         try:
@@ -189,17 +215,20 @@ class MoviesTransactions:
         except Exception as e:
             print(e)
             db.session.rollback()
-            return jsonify({
-                "message": "Error paying the movie",
-                "error": e
-            }), 500
+            return jsonify({"message": "Error paying the movie", "error": e}), 500
 
-
-        return jsonify({
-            "message": "Movie paid successfully",
-            "movie_id": transaction_id,
-            "user_id": user_id,
-            "return_date": user_rented_movie.return_date.strftime("%Y-%m-%d %H:%M:%S"),
-            "returned": user_rented_movie.returned,
-            "change": change
-        }), 200
+        return (
+            jsonify(
+                {
+                    "message": "Movie paid successfully",
+                    "movie_id": transaction_id,
+                    "user_id": user_id,
+                    "return_date": user_rented_movie.return_date.strftime(
+                        "%Y-%m-%d %H:%M:%S"
+                    ),
+                    "returned": user_rented_movie.returned,
+                    "change": change,
+                }
+            ),
+            200,
+        )

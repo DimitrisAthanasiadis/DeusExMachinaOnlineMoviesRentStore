@@ -12,10 +12,11 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///movie_store.db'
+    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///movie_store.db"
 
     return app
+
 
 def register_blueprints(app, *args):
     for arg in args:

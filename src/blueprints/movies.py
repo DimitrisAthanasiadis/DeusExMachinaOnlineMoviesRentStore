@@ -2,10 +2,10 @@ from flask import Blueprint, jsonify, request
 from src.models import Movies
 
 
-movies_bp = Blueprint('movies', __name__, url_prefix='/movies')
+movies_bp = Blueprint("movies", __name__, url_prefix="/movies")
 
 
-@movies_bp.route('/')
+@movies_bp.route("/")
 def movies_home():
     """
     fetches the entire dataset of movies
@@ -20,7 +20,7 @@ def movies_home():
     return jsonify(movies=[movie.to_json() for movie in movies])
 
 
-@movies_bp.route('/category', methods=['POST'])
+@movies_bp.route("/category", methods=["POST"])
 def movie_by_category():
     """
     fetches movies by category id.
@@ -42,7 +42,7 @@ def movie_by_category():
     return jsonify(movies=[movie.to_json() for movie in movies]), 200
 
 
-@movies_bp.route('/movie_info', methods=['POST'])
+@movies_bp.route("/movie_info", methods=["POST"])
 def movie_info():
     """
     fetches info about a specific movie.
@@ -63,7 +63,7 @@ def movie_info():
     return jsonify(movie=movie.to_json()), 200
 
 
-@movies_bp.route("/rating", methods=['POST'])
+@movies_bp.route("/rating", methods=["POST"])
 def movie_by_rating():
     """
     fetches movies filtered by rating.
